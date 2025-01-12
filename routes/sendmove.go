@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"laskerbot/controller"
 	"laskerbot/models"
+	"laskerbot/services"
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,10 +33,7 @@ func SendMove(server *gin.Engine) {
 		}
 
 		responseString := fmt.Sprintf("%v", llm_response[0])
-
-		responseString = strings.TrimPrefix(responseString, "```json\n")
-		responseString = strings.TrimSuffix(responseString, "\n```")
-		responseString = strings.ReplaceAll(responseString, "```", "")
+		responseString = services.ParseToJsonResponse(responseString)
 
 		var response struct {
 			LLMResponse struct {
