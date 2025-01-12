@@ -15,6 +15,7 @@ func main() {
 
 	routes.SendMove(botServer)
 	routes.SendMessage(botServer)
+	routes.InfoBot(botServer)
 
 	botServer.Run(":8080")
 
